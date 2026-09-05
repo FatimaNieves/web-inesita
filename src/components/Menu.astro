@@ -19,7 +19,12 @@ const categories = [
         id: 'especial',
         label: 'Menú Especial',
         items: [
-            { name: 'Matcha Latte', priceVariants: [{ label: 'L', price: '3,10 €' }, { label: 'XL', price: '3,50 €' }], note: 'Vaso L · Vaso XL' },
+            {
+                name: 'Matcha Latte',
+                image: '/images/inesita/real/preparando-matcha.jpg',
+                priceVariants: [{ label: 'L', price: '3,10 €' }, { label: 'XL', price: '3,50 €' }],
+                note: 'Vaso L · Vaso XL'
+            },
             { name: 'Chai Latte', priceVariants: [{ label: 'L', price: '3,10 €' }, { label: 'XL', price: '3,50 €' }], note: 'Vaso L · Vaso XL' },
             { name: 'Ube Latte', priceVariants: [{ label: 'L', price: '4,50 €' }, { label: 'XL', price: '5,00 €' }], note: 'Vaso L · Vaso XL' },
             { name: 'Cold Brew', price: '2,80 €', note: 'Lata 250' }
@@ -78,7 +83,11 @@ const categories = [
                     { name: 'Detox', desc: 'Espinaca · Naranja · Manzana · Hierbabuena' }
                 ]
             },
-            { name: 'Granizado del día', priceVariants: [{ label: 'Lata 250', price: '3,00 €' }, { label: 'Lata 350', price: '3,50 €' }] },
+            {
+                name: 'Granizado del día',
+                image: '/images/inesita/real/mano-granizado.jpg',
+                priceVariants: [{ label: 'Lata 250', price: '3,00 €' }, { label: 'Lata 350', price: '3,50 €' }]
+            },
             { name: 'Berry-Lime', priceVariants: [{ label: 'Lata 250', price: '3,00 €' }, { label: 'Lata 350', price: '3,50 €' }] }
         ]
     },
@@ -88,7 +97,7 @@ const categories = [
         items: [
             { name: 'Bizcocho del día', price: '3,50 €' },
             { name: 'Croissant', image: '/images/inesita/real/croissants-jamon.jpg', price: '3,80 €', options: ['Choco-avellana', 'Pistacho', 'Salado'] },
-            { name: 'Cookies', image: '/images/inesita/real/cajas-dulces.jpg', price: '3,50 €' },
+            { name: 'Cookies', image: '/images/inesita/real/cookies-closeup.jpg', price: '3,50 €' },
             { name: 'Tosta dulce', image: '/images/inesita/real/tosta-choco-granola.jpg', price: '4,90 €', options: ['Choco granola', 'Plátano y miel'] },
             { name: 'Griego', price: '3,60 €' }
         ]
