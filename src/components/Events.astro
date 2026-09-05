@@ -1,4 +1,13 @@
 ---
+const gallery = [
+    { src: '/images/inesita/real/evento-bandeja-inesita.jpg', alt: 'Caja de desayuno de Inesita con bollería y fruta' },
+    { src: '/images/inesita/real/evento-mesa-bebidas.jpg', alt: 'Mesa de evento con bebidas de Inesita' },
+    { src: '/images/inesita/real/evento-bandeja-dulces.jpg', alt: 'Bandeja de dulces y sándwiches de Inesita' },
+    { src: '/images/inesita/real/evento-bebidas-vasos.jpg', alt: 'Bebidas de Inesita servidas en un evento' },
+    { src: '/images/inesita/real/evento-snacks-bolsas.jpg', alt: 'Snacks y bolsitas de picoteo de Inesita' },
+    { src: '/images/inesita/real/evento-mesa-general.jpg', alt: 'Mesa de catering de Inesita para un evento' }
+];
+
 const events = [
     {
         name: 'Desayunos de grupo',
@@ -30,13 +39,14 @@ const events = [
             </p>
         </div>
 
-        <div class="mt-12 aspect-[21/9] overflow-hidden">
-            <img
-                src="https://images.unsplash.com/photo-1753351058952-a3ff77a26a5a?w=2000&q=80&auto=format&fit=crop"
-                alt="Amigos celebrando con café en la mesa"
-                class="h-full w-full object-cover"
-                loading="lazy"
-            />
+        <div class="mt-12 grid grid-cols-2 gap-1 sm:grid-cols-3">
+            {
+                gallery.map((photo) => (
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src={photo.src} alt={photo.alt} class="h-full w-full object-cover" loading="lazy" />
+                    </div>
+                ))
+            }
         </div>
 
         <div class="mt-12 grid gap-px overflow-hidden border border-hairline bg-hairline sm:grid-cols-3">
