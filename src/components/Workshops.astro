@@ -1,0 +1,62 @@
+---
+const workshops = [
+    {
+        tag: 'Taller',
+        name: 'Latte art para principiantes',
+        desc: 'Aprende a texturizar la leche y a dibujar tus primeros corazones y rosetas sobre un flat white.',
+        duration: '90 min · Grupos reducidos'
+    },
+    {
+        tag: 'Taller',
+        name: 'Café de especialidad en casa',
+        desc: 'Método V60 y prensa francesa: molienda, temperatura y tiempos para sacarle todo el partido a tu café en casa.',
+        duration: '2 h · Incluye bolsa de grano'
+    },
+    {
+        tag: 'Experiencia',
+        name: 'Cata guiada de origen',
+        desc: 'Un recorrido por tres orígenes distintos, catados en sala junto a nuestro equipo de barista.',
+        duration: '60 min · Con maridaje dulce'
+    },
+    {
+        tag: 'Experiencia',
+        name: 'Brunch + cata',
+        desc: 'Brunch completo seguido de una cata breve pensada para grupos que quieren algo más que desayunar.',
+        duration: '2 h · Mínimo 4 personas'
+    }
+];
+---
+
+<section id="talleres" class="bg-roast text-parchment">
+    <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-12 lg:py-40">
+        <div class="grid gap-10 lg:grid-cols-2 lg:items-end lg:gap-16">
+            <div>
+                <p class="eyebrow text-granate-light!">Talleres y experiencias</p>
+                <h2 class="heading-display mt-5 text-subheading text-parchment sm:text-heading-sm lg:text-heading">Aprende y prueba</h2>
+            </div>
+            <div class="aspect-[16/10] overflow-hidden">
+                <img
+                    src="https://images.unsplash.com/photo-1547240089-0b75465f8e80?w=1400&q=80&auto=format&fit=crop"
+                    alt="Taller de latte art en Inesita"
+                    class="h-full w-full object-cover"
+                    loading="lazy"
+                />
+            </div>
+        </div>
+
+        <div class="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2">
+            {
+                workshops.map((w) => (
+                    <div class="border-t border-parchment/20 pt-6">
+                        <p class="text-[11px] font-medium uppercase tracking-[0.2em] text-granate-light">{w.tag}</p>
+                        <h3 class="font-display mt-3 text-2xl font-normal text-parchment sm:text-3xl">{w.name}</h3>
+                        <p class="mt-3 max-w-md text-sm leading-relaxed text-parchment/70">{w.desc}</p>
+                        <p class="mt-4 text-xs uppercase tracking-[0.1em] text-parchment/50">{w.duration}</p>
+                    </div>
+                ))
+            }
+        </div>
+
+        <a href="#contacto" class="btn-ghost btn-ghost-dark mt-16">Apúntate o pregunta por fechas</a>
+    </div>
+</section>

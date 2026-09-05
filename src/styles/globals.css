@@ -1,78 +1,115 @@
 @import 'tailwindcss';
 
 @theme {
-    --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --color-primary: #f67280;
-    --color-primary-content: #101828;
-    --color-complementary: #355c7d;
-    --background-image-noise: linear-gradient(
-            to bottom,
-            color-mix(in oklab, var(--color-gray-950) 0%, transparent),
-            color-mix(in oklab, var(--color-gray-950) 100%, transparent)
-        ),
-        url('/images/noise.png');
+    /* Tipografía: serif editorial de gran formato (peso ligero) + Montserrat como voz estructural */
+    --font-display: 'Playfair Display', 'Georgia', serif;
+    --font-sans:
+        'Montserrat Variable', 'Montserrat', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* Paleta: tokens exactos de referencia (parchment/linen/warm-stone/walnut/espresso/onyx/midnight-roast)
+       con el granate de Inesita sustituyendo al azafrán como único acento cromático */
+    --color-parchment: #d8cbb8; /* lienzo principal de las secciones claras */
+    --color-linen: #bfb4a3; /* superficie secundaria / bandas alternas */
+    --color-hairline: #b6ab9c; /* warm-stone: separadores de 1px, borde editorial */
+    --color-walnut: #978e81; /* texto muy secundario / metadatos */
+    --color-muted: #615b53; /* espresso: texto secundario */
+    --color-ink: #2c2c2c; /* onyx-warm: texto principal, nunca negro puro */
+    --color-roast: #292622; /* midnight-roast: fondo oscuro, hero/footer */
+    --color-roast-deep: #1c1a17;
+    --color-granate: #8b1a1a; /* único acento cromático de la marca (sustituye al saffron-glow) */
+    --color-granate-light: #c2453f; /* variante clara del granate, para legibilidad sobre fondo oscuro — sigue siendo el único acento cromático */
+
+    /* Escala tipográfica editorial exacta (tamaño / interlineado / tracking) */
+    --text-caption: 0.8125rem; /* 13px */
+    --text-caption--line-height: 1.3;
+    --text-caption--letter-spacing: -0.011em;
+
+    --text-body: 0.9375rem; /* 15px */
+    --text-body--line-height: 1.4;
+    --text-body--letter-spacing: -0.01em;
+
+    --text-body-lg: 1.625rem; /* 26px */
+    --text-body-lg--line-height: 1.2;
+    --text-body-lg--letter-spacing: -0.006em;
+
+    --text-subheading: 2.625rem; /* 42px */
+    --text-subheading--line-height: 1;
+    --text-subheading--letter-spacing: -0.04em;
+
+    --text-heading-sm: 3.125rem; /* 50px */
+    --text-heading-sm--line-height: 0.9;
+    --text-heading-sm--letter-spacing: -0.03em;
+
+    --text-heading: 4.0625rem; /* 65px */
+    --text-heading--line-height: 0.85;
+    --text-heading--letter-spacing: -0.04em;
+
+    --text-heading-lg: 4.3125rem; /* 69px */
+    --text-heading-lg--line-height: 0.9;
+    --text-heading-lg--letter-spacing: -0.04em;
+
+    --text-display: 7.1875rem; /* 115px */
+    --text-display--line-height: 0.8;
+    --text-display--letter-spacing: -0.04em;
 }
 
 @layer base {
-    h1 {
-        @apply text-4xl font-bold tracking-tight sm:text-5xl;
+    * {
+        border-color: var(--color-hairline);
     }
 
-    h2 {
-        @apply text-2xl font-bold sm:text-3xl;
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 5.5rem;
     }
 
-    a:not(.btn) {
-        @apply underline transition hover:opacity-80;
+    body {
+        @apply bg-parchment text-ink font-sans antialiased;
     }
 
-    pre {
-        @apply p-6 overflow-x-auto rounded-lg;
-    }
-
-    :not(pre) > code {
-        @apply px-1 py-0.5 font-mono rounded bg-gray-900 text-primary;
-        font-size: 0.9em;
+    h1,
+    h2,
+    h3 {
+        @apply font-display font-light text-ink;
     }
 }
 
 @layer components {
-    .markdown {
-        > * {
-            @apply my-6;
-        }
-
-        :where(h1, h2) {
-            @apply mt-12 mb-6;
-        }
-
-        > :first-child {
-            @apply mt-0;
-        }
-
-        > :last-child {
-            @apply mb-0;
-        }
+    /* Etiqueta pequeña en mayúsculas que abre cada sección, en granate */
+    .eyebrow {
+        @apply font-sans text-caption font-semibold uppercase tracking-[0.25em] text-granate;
     }
 
-    .btn {
-        @apply inline-flex items-center justify-center gap-2 bg-primary text-primary-content cursor-pointer text-center font-semibold no-underline transition-colors;
-        padding: var(--btn-py, 0.875rem) var(--btn-px, 1.25rem);
-        font-size: var(--btn-font-size, 0.875rem);
-        border-radius: var(--btn-border-radius, 0.25rem);
-
-        &:hover {
-            @apply bg-primary/85;
-        }
-
-        &:disabled {
-            @apply text-gray-400 bg-gray-700;
-        }
+    /* Titular editorial: serif muy ligero, mayúsculas, tracking negativo (escala exacta 42→115px según breakpoint) */
+    .heading-display {
+        @apply font-display font-light uppercase text-ink;
     }
 
-    .btn-lg {
-        --btn-font-size: 1.125rem;
-        --btn-px: 1.5rem;
-        --btn-py: 1.125rem;
+    /* Separador fino de sección, a modo de filete editorial */
+    .hairline {
+        @apply w-full border-t border-hairline;
+    }
+
+    /* Botón fantasma: sin relleno, borde de 1px, todo mayúsculas */
+    .btn-ghost {
+        @apply inline-flex items-center justify-center gap-2 rounded-[3px] border px-7 py-4 font-sans text-sm font-medium uppercase tracking-[0.08em] no-underline transition-colors duration-300;
+    }
+
+    .btn-ghost-dark {
+        @apply border-parchment text-parchment hover:bg-parchment hover:text-roast;
+    }
+
+    .btn-ghost-light {
+        @apply border-ink text-ink hover:bg-ink hover:text-parchment;
+    }
+
+    /* Enlace de texto, sin fondo ni borde */
+    .link-text {
+        @apply font-sans text-sm font-medium uppercase tracking-[0.08em] text-ink underline decoration-hairline decoration-1 underline-offset-4 transition hover:text-granate hover:decoration-granate;
+    }
+
+    /* Tarjeta plana, sin sombra, sin radio */
+    .card-flat {
+        @apply border border-hairline bg-parchment;
     }
 }

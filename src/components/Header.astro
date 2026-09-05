@@ -1,30 +1,88 @@
 ---
-import Logo from '../components/Logo.astro';
-
 const navItems = [
-    { linkText: 'Home', href: '/' },
-    { linkText: 'Revalidation', href: '/revalidation' },
-    { linkText: 'Image CDN', href: '/image-cdn' },
-    { linkText: 'Edge Function', href: '/edge' },
-    { linkText: 'Blobs', href: '/blobs' }
+    { label: 'Quiénes somos', href: '#quienes-somos' },
+    { label: 'Carta', href: '#carta' },
+    { label: 'Eventos', href: '#eventos' },
+    // { label: 'Talleres', href: '#talleres' }, // reactivar cuando vuelva la sección Workshops
+    // Reseñas e Instagram viven en la página pero se han quitado del menú a petición de Fátima.
+    { label: 'Contacto', href: '#contacto' }
 ];
 ---
 
-<nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
-    <a href="/">
-        <Logo />
-    </a>
-    {
-        !!navItems?.length && (
-            <ul class="flex flex-wrap gap-x-4 gap-y-1">
-                {navItems.map((item) => (
+<header class="fixed inset-x-0 top-0 z-50 border-b border-parchment/10 bg-roast/95 backdrop-blur-sm">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-12">
+        <a href="/" class="shrink-0 bg-parchment px-2.5 py-1.5">
+            <img src="/images/inesita/logo.jpg" alt="Inesita · Café de Especialidad" class="h-7 w-auto sm:h-9" />
+        </a>
+
+        <ul class="hidden items-center gap-8 lg:flex">
+            {
+                navItems.map((item) => (
                     <li>
-                        <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
-                            {item.linkText}
+                        <a href={item.href} class="font-sans text-xs font-medium uppercase tracking-[0.12em] text-parchment/90 transition hover:text-parchment">
+                            {item.label}
                         </a>
                     </li>
-                ))}
-            </ul>
-        )
-    }
-</nav>
+                ))
+            }
+        </ul>
+
+        <a href="#contacto" class="btn-ghost btn-ghost-dark hidden lg:inline-flex">Reservar</a>
+
+        <button
+            id="menu-toggle"
+            type="button"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            class="flex h-10 w-10 items-center justify-center border border-parchment/60 text-parchment lg:hidden"
+        >
+            <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+            </svg>
+            <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </nav>
+
+    <div id="mobile-menu" class="hidden border-t border-parchment/20 bg-roast lg:hidden">
+        <ul class="flex flex-col gap-1 px-6 py-6">
+            {
+                navItems.map((item) => (
+                    <li>
+                        <a href={item.href} class="block py-2.5 font-sans text-sm font-medium uppercase tracking-[0.12em] text-parchment/90">
+                            {item.label}
+                        </a>
+                    </li>
+                ))
+            }
+            <li class="pt-3">
+                <a href="#contacto" class="btn-ghost btn-ghost-dark w-full">Reservar</a>
+            </li>
+        </ul>
+    </div>
+</header>
+
+<script>
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+
+    toggle?.addEventListener('click', () => {
+        const isOpen = menu?.classList.toggle('hidden') === false;
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        iconOpen?.classList.toggle('hidden', isOpen);
+        iconClose?.classList.toggle('hidden', !isOpen);
+    });
+
+    menu?.querySelectorAll('a').forEach((link) =>
+        link.addEventListener('click', () => {
+            menu.classList.add('hidden');
+            toggle?.setAttribute('aria-expanded', 'false');
+            iconOpen?.classList.remove('hidden');
+            iconClose?.classList.add('hidden');
+        })
+    );
+</script>

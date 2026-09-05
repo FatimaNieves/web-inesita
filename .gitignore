@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # Local Netlify folder
 .netlify
+
+# Local agent/dev tooling config (not part of the site)
+.claude/

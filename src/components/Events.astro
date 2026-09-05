@@ -1,0 +1,57 @@
+---
+const events = [
+    {
+        name: 'Desayunos de grupo',
+        desc: 'Reserva la mesa larga para desayunos de empresa, reuniones informales o encuentros de amigas. Bandejas de repostería y café recién hecho para todos.',
+        meta: 'Desde 6 personas · Bajo reserva'
+    },
+    {
+        name: 'Cumpleaños',
+        desc: 'Celebra tu cumpleaños o el de los peques con tarta a medida, decoración sencilla y un rincón solo para vosotros.',
+        meta: 'Infantil y adulto · Tarta personalizada'
+    },
+    {
+        name: 'Eventos privados',
+        desc: 'Baby showers, presentaciones, reuniones de club de lectura o cualquier ocasión que merezca su propio espacio. Cerramos la sala para vosotros.',
+        meta: 'Aforo hasta 25 personas'
+    }
+];
+---
+
+<section id="eventos" class="bg-parchment">
+    <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-12 lg:py-40">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+                <p class="eyebrow">Eventos</p>
+                <h2 class="heading-display mt-5 text-subheading sm:text-heading-sm lg:text-heading">Desayunos y celebraciones</h2>
+            </div>
+            <p class="max-w-sm text-sm text-muted sm:text-base">
+                Cuéntanos qué estás celebrando y preparamos contigo la mesa, la carta y los detalles.
+            </p>
+        </div>
+
+        <div class="mt-12 aspect-[21/9] overflow-hidden">
+            <img
+                src="https://images.unsplash.com/photo-1753351058952-a3ff77a26a5a?w=2000&q=80&auto=format&fit=crop"
+                alt="Amigos celebrando con café en la mesa"
+                class="h-full w-full object-cover"
+                loading="lazy"
+            />
+        </div>
+
+        <div class="mt-12 grid gap-px overflow-hidden border border-hairline bg-hairline sm:grid-cols-3">
+            {
+                events.map((event) => (
+                    <div class="flex flex-col gap-4 bg-parchment p-8 sm:p-10">
+                        <p class="eyebrow text-[10px]">{event.meta}</p>
+                        <h3 class="font-display text-2xl font-normal text-ink sm:text-3xl">{event.name}</h3>
+                        <p class="text-sm leading-relaxed text-muted">{event.desc}</p>
+                        <a href="#contacto" class="link-text mt-auto self-start pt-2">
+                            Consultar disponibilidad
+                        </a>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

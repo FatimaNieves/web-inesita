@@ -1,0 +1,228 @@
+---
+// Carta real de Inesita (transcrita de la carta física). Actualizar aquí cuando cambien precios o productos.
+const categories = [
+    {
+        id: 'cafe',
+        label: 'Menú Café',
+        items: [
+            { name: 'Espresso', price: '1,60 €' },
+            { name: 'Americano', price: '1,60 €' },
+            { name: 'Cortado', price: '1,70 €' },
+            { name: 'Café con leche', price: '1,80 €' },
+            { name: 'Capuchino', price: '2,00 €' },
+            { name: 'Capuchino XL', price: '2,90 €' },
+            { name: 'Latte', price: '2,40 €' },
+            { name: 'Flat White', price: '2,90 €' }
+        ]
+    },
+    {
+        id: 'especial',
+        label: 'Menú Especial',
+        items: [
+            { name: 'Matcha Latte', priceVariants: [{ label: 'L', price: '3,10 €' }, { label: 'XL', price: '3,50 €' }], note: 'Vaso L · Vaso XL' },
+            { name: 'Chai Latte', priceVariants: [{ label: 'L', price: '3,10 €' }, { label: 'XL', price: '3,50 €' }], note: 'Vaso L · Vaso XL' },
+            { name: 'Ube Latte', priceVariants: [{ label: 'L', price: '4,50 €' }, { label: 'XL', price: '5,00 €' }], note: 'Vaso L · Vaso XL' },
+            { name: 'Cold Brew', price: '2,80 €', note: 'Lata 250' }
+        ],
+        extras: [
+            { name: 'Café del mes', price: '+ 0,40 €' },
+            { name: 'Leche de avena', price: '+ 0,30 €' },
+            { name: 'Doble carga', price: '+ 0,50 €' },
+            { name: 'Lata + hielo M-L', price: '+ 0,70 €' },
+            { name: 'Lata + hielo XL', price: '+ 0,80 €' }
+        ]
+    },
+    {
+        id: 'infusiones',
+        label: 'Infusiones y Tés',
+        items: [
+            {
+                name: 'Infusión',
+                priceVariants: [{ label: 'L', price: '1,80 €' }, { label: 'XL', price: '1,90 €' }],
+                options: [
+                    'Limón y jengibre orgánico',
+                    'Té verde china sencha',
+                    'Viaje tropical',
+                    'Rooibos',
+                    'Frutos del bosque',
+                    'Té blanco pai mu tan',
+                    'Té verde',
+                    'Té amarillo melocotón',
+                    'Menta poleo',
+                    'English breakfast',
+                    'Manzanilla',
+                    'Té verde cereza japonesa'
+                ]
+            }
+        ]
+    },
+    {
+        id: 'choco',
+        label: 'Menú Choco',
+        items: [
+            { name: 'Chocolate a la taza', priceVariants: [{ label: 'M', price: '2,60 €' }, { label: 'L', price: '2,90 €' }], note: 'Vaso M · Vaso L' },
+            { name: 'Choco-Leche', priceVariants: [{ label: 'L', price: '2,60 €' }, { label: 'XL', price: '2,90 €' }], note: 'Vaso L · Vaso XL' }
+        ]
+    },
+    {
+        id: 'zumos',
+        label: 'Menú Zumos',
+        items: [
+            {
+                name: 'Zumo Natural',
+                image: '/images/inesita/real/zumo-y-tosta.jpg',
+                priceVariants: [{ label: 'Lata 250', price: '3,00 €' }, { label: 'Lata 350', price: '4,00 €' }],
+                groupedOptions: [
+                    { name: 'Vitamina', desc: 'Fresa · Naranja · Manzana' },
+                    { name: 'Retinol', desc: 'Zanahoria · Naranja · Manzana · Cúrcuma' },
+                    { name: 'Detox', desc: 'Espinaca · Naranja · Manzana · Hierbabuena' }
+                ]
+            },
+            { name: 'Granizado del día', priceVariants: [{ label: 'Lata 250', price: '3,00 €' }, { label: 'Lata 350', price: '3,50 €' }] },
+            { name: 'Berry-Lime', priceVariants: [{ label: 'Lata 250', price: '3,00 €' }, { label: 'Lata 350', price: '3,50 €' }] }
+        ]
+    },
+    {
+        id: 'snack-dulce',
+        label: 'Snack Dulce',
+        items: [
+            { name: 'Bizcocho del día', price: '3,50 €' },
+            { name: 'Croissant', image: '/images/inesita/real/croissants-jamon.jpg', price: '3,80 €', options: ['Choco-avellana', 'Pistacho', 'Salado'] },
+            { name: 'Cookies', image: '/images/inesita/real/cajas-dulces.jpg', price: '3,50 €' },
+            { name: 'Tosta dulce', image: '/images/inesita/real/tosta-choco-granola.jpg', price: '4,90 €', options: ['Choco granola', 'Plátano y miel'] },
+            { name: 'Griego', price: '3,60 €' }
+        ]
+    },
+    {
+        id: 'snack-salado',
+        label: 'Snack Salado',
+        items: [
+            { name: 'Tosta aceite y sal', price: '2,60 €', options: ['Aceite aromatizado + escamas de sal'] },
+            {
+                name: 'Tosta salada',
+                image: '/images/inesita/real/tosta-serrano.jpg',
+                price: '4,90 €',
+                options: ['Tomate + aceite aromatizado', 'Serrano + tomate confitado', 'Pavo + pesto + pistacho']
+            }
+        ]
+    }
+];
+---
+
+<section id="carta" class="bg-linen">
+    <div class="mx-auto max-w-5xl px-6 py-24 sm:py-32 lg:px-12 lg:py-40">
+        <div class="text-center">
+            <p class="eyebrow text-center">La carta</p>
+            <h2 class="heading-display mt-5 text-subheading sm:text-heading-sm lg:text-heading">Nuestra carta</h2>
+            <p class="mx-auto mt-6 max-w-lg text-sm text-muted sm:text-base">
+                Precios con IVA incluido. Descripciones y alérgenos disponibles en el establecimiento.
+            </p>
+        </div>
+
+        <div class="mt-14">
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3" role="tablist">
+                {
+                    categories.map((cat, i) => (
+                        <button
+                            type="button"
+                            data-tab={cat.id}
+                            aria-selected={i === 0}
+                            class:list={[
+                                'cursor-pointer rounded-[3px] border px-4 py-2.5 font-sans text-xs font-medium uppercase tracking-[0.1em] transition',
+                                i === 0 ? 'border-granate bg-granate text-parchment' : 'border-hairline text-muted hover:border-ink hover:text-ink'
+                            ]}
+                        >
+                            {cat.label}
+                        </button>
+                    ))
+                }
+            </div>
+
+            {
+                categories.map((cat, i) => (
+                    <div class:list={['mt-12', { hidden: i !== 0 }]} data-panel={cat.id}>
+                        <ul class="divide-y divide-hairline">
+                            {cat.items.map((item) => (
+                                <li class="flex gap-4 py-4">
+                                    {item.image && (
+                                        <img
+                                            src={item.image}
+                                            alt={item.name}
+                                            loading="lazy"
+                                            class="h-16 w-16 shrink-0 object-cover sm:h-20 sm:w-20"
+                                        />
+                                    )}
+                                    <div class="min-w-0 grow">
+                                        <div class="flex items-baseline justify-between gap-4">
+                                            <p class="font-display text-lg text-ink sm:text-xl">{item.name}</p>
+                                            <p class="shrink-0 whitespace-nowrap font-sans text-base font-semibold text-granate sm:text-lg">
+                                                {item.price}
+                                                {item.priceVariants?.map((v, vi) => (
+                                                    <>
+                                                        {vi > 0 && ' / '}
+                                                        {v.price}
+                                                    </>
+                                                ))}
+                                            </p>
+                                        </div>
+
+                                        {item.note && <p class="mt-1 text-xs uppercase tracking-[0.08em] text-walnut">{item.note}</p>}
+
+                                        {item.options && <p class="mt-1 text-sm text-muted">{item.options.join(' · ')}</p>}
+
+                                        {item.groupedOptions && (
+                                            <ul class="mt-3 space-y-1.5">
+                                                {item.groupedOptions.map((opt) => (
+                                                    <li class="text-sm text-muted">
+                                                        <span class="font-medium text-ink">{opt.name}:</span> {opt.desc}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        )}
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+
+                        {cat.extras && (
+                            <div class="mt-8 border-t border-hairline pt-6">
+                                <p class="eyebrow text-[10px]">Extras</p>
+                                <ul class="mt-3 space-y-2">
+                                    {cat.extras.map((extra) => (
+                                        <li class="flex items-baseline justify-between gap-4 text-sm text-muted">
+                                            <span>{extra.name}</span>
+                                            <span class="shrink-0 font-medium text-ink">{extra.price}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    const buttons = document.querySelectorAll('#carta [data-tab]');
+    const panels = document.querySelectorAll('#carta [data-panel]');
+
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const id = button.dataset.tab;
+
+            buttons.forEach((b) => {
+                const active = b === button;
+                b.setAttribute('aria-selected', String(active));
+                b.classList.toggle('border-granate', active);
+                b.classList.toggle('bg-granate', active);
+                b.classList.toggle('text-parchment', active);
+                b.classList.toggle('border-hairline', !active);
+                b.classList.toggle('text-muted', !active);
+            });
+
+            panels.forEach((panel) => panel.classList.toggle('hidden', panel.dataset.panel !== id));
+        });
+    });
+</script>

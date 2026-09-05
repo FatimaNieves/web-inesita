@@ -1,0 +1,83 @@
+---
+// Reseñas reales de la ficha de Google de Inesita (4,8 · 55 opiniones en el momento de escribir esto).
+// Actualizar de vez en cuando con reseñas nuevas desde https://www.google.com/maps/search/Inesita+Cafe+de+Especialidad+Ourense
+const reviews = [
+    {
+        name: 'José Ignacio Ortiz Alonso',
+        text: 'Un sitio totalmente recomendable. El ambiente es muy agradable, el local está muy cuidado y el trato del personal es excelente, siempre atentos y con una sonrisa.'
+    },
+    {
+        name: 'La Morena',
+        text: 'Un lugar donde encontrar profesionalidad en cada cosa que pides. Aquí cualquier antojo se hace realidad: buen café asegurado y mucha amabilidad. ¡Sois estupendas!'
+    },
+    {
+        name: 'María José Rodríguez',
+        text: 'Excelente experiencia. El café estaba delicioso, con un sabor intenso y muy bien preparado, y el granizado resultó refrescante y perfecto para combatir el calor.'
+    },
+    {
+        name: 'Diogo Custodio',
+        text: 'Producto de calidad, estaba todo muy rico y el trato inmejorable. ¡Cafés de excelencia!'
+    },
+    {
+        name: 'Ariberna OU',
+        text: 'Me gustó el café y la cookie de chocolate y caramelo. El trato de las chicas es muy amable.'
+    },
+    {
+        name: 'Marta Fernández',
+        text: 'El mejor café de Ourense. Muy recomendable.'
+    }
+];
+---
+
+<section id="resenas" class="bg-linen">
+    <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-12 lg:py-40">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+                <p class="eyebrow">Reseñas</p>
+                <h2 class="heading-display mt-5 text-subheading sm:text-heading-sm lg:text-heading">Lo que cuentan</h2>
+            </div>
+            <div class="flex flex-col gap-2 sm:items-end">
+                <div class="flex items-center gap-2">
+                    <div class="flex gap-0.5 text-granate" aria-hidden="true">
+                        {Array.from({ length: 5 }).map(() => (
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+                                <path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L10 14.9l-5.2 2.73.99-5.8-4.21-4.1 5.82-.85L10 1.5z" />
+                            </svg>
+                        ))}
+                    </div>
+                    <span class="text-sm font-semibold text-ink">4,8</span>
+                    <span class="text-sm text-muted">· 55 opiniones en Google</span>
+                </div>
+                <a
+                    href="https://www.google.com/maps/search/Inesita+Cafe+de+Especialidad+Ourense"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="link-text"
+                >
+                    Ver todas en Google
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-16 grid gap-px overflow-hidden border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-3">
+            {
+                reviews.map((review) => (
+                    <div class="flex flex-col gap-4 bg-linen p-8 sm:p-10">
+                        <div class="flex items-center justify-between">
+                            <div class="flex gap-1 text-granate" aria-label="5 de 5 estrellas">
+                                {Array.from({ length: 5 }).map(() => (
+                                    <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+                                        <path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L10 14.9l-5.2 2.73.99-5.8-4.21-4.1 5.82-.85L10 1.5z" />
+                                    </svg>
+                                ))}
+                            </div>
+                            <span class="text-[10px] font-medium uppercase tracking-[0.15em] text-walnut">Google</span>
+                        </div>
+                        <p class="text-base leading-relaxed text-ink">“{review.text}”</p>
+                        <p class="mt-auto text-xs font-medium uppercase tracking-[0.1em] text-walnut">{review.name}</p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
